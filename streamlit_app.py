@@ -3,7 +3,7 @@ import streamlit as st
 import pickle
 
 # load pkl file
-with open('model.pkl', 'rb') as file:
+with open('modell.pkl', 'rb') as file:
     model = pickle.load(file)
 
 #title the page
