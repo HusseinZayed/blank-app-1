@@ -1,6 +1,7 @@
 
 import streamlit as st
 import pickle
+import numpy as np
 
 # load pkl file
 with open('modell.pkl', 'rb') as file:
