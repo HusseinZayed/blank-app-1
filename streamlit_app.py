@@ -24,6 +24,7 @@ num_col = df.select_dtypes(include='number').columns.to_list()
 
 x_col = st.selectbox('Choose the x axis',num_col)
 y_col = st.selectbox('Choose the y axis',num_col)
+color = st.selectbox('Choose the color',df.columns.to_list())
 
-fig1 = px.scatter(df,x=x_col,y=y_col)
+fig1 = px.scatter(df,x=x_col,y=y_col,color='red')
 st.plotly_chart(fig1)
