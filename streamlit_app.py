@@ -7,4 +7,4 @@ st.set_page_config(
 
 st.write("# Welcome to Streamlit! 👋")
 
-st.sidebar("Select Demo above.")
+st.sidebar.header("Select Demo above.")
