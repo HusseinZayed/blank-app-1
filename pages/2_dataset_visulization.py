@@ -24,7 +24,7 @@ tab1,tab2 = st.tabs(['scatter','histogram'])
 with tab1:
   col1,col2,col3 = st.columns(3)
   with col1:
-  x_col = st.selectbox('choose x column',num_col)
+    x_col = st.selectbox('choose x column',num_col)
   with col2:
     y_col = st.selectbox('choose y column',num_col)
   with col3:
@@ -35,5 +35,5 @@ with tab1:
   st.plotly_chart(fig)
 
 with tab2:
-fig2 = px.histogram(df,x='population')
-st.plotly_chart(fig2)
+  fig2 = px.histogram(df,x='population')
+  st.plotly_chart(fig2)
