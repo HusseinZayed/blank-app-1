@@ -1,6 +1,7 @@
-## example 1 with sidebar
+## example 1 with sidebar and spinner
 import streamlit as st
 
+import time
 st.sidebar.title('Sidebar')
 
 st.header('Calculate Area')
@@ -20,4 +21,6 @@ elif choose == 'Rectangle':
 
 btn = st.button('Calculate')
 if btn:
+  with st.spinner('Calculating...'):
+    time.sleep(2)
   st.write(f'The area is {area}')
