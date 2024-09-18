@@ -1,14 +1,10 @@
 import streamlit as st
-st.header('Session State')
 
-text_list = []
-# Text input
-user_input = st.text_input('Enter some text')
+st.set_page_config(
+  page_title="Welcome", 
+  page_icon="👋"
+)
 
-# Buttons
-if st.button('Append'):
-  text_list.append(user_input)
-  
+st.write("# Welcome to Streamlit! 👋")
 
-# Display the list
-st.write('Text list:',text_list)
+st.sidebar.success("Select Demo above.")
