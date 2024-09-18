@@ -1,7 +1,6 @@
 
 import streamlit as st
-## example 1
-%%writefile app.py
+
 st.header('Calculate Area')
 choose = st.selectbox('Choose the shape',['Circle','Rectangle'])
 
