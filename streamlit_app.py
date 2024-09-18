@@ -1,5 +1,7 @@
 # app 2
 import streamlit as st
+
+# app 2
 import pandas as pd
 import plotly.express as px
 
@@ -18,6 +20,8 @@ if names_column:
 else:
   st.write(df[:num_row])
 
+x_col = st.selectbox('choose x column',df.columns.to_list())
+y_col = st.selectbox('choose y column',df.columns.to_list())
 
-fig = px.scatter(df,x='population',y='total_rooms')
+fig = px.scatter(df,x=x_col,y=y_col)
 st.plotly_chart(fig)
