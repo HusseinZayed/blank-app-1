@@ -17,14 +17,22 @@ if column_choose:
   st.write(df[:n_rows][column_choose])
 else:
   st.write(df[:n_rows])
-  
+
 ################################
 
 num_col = df.select_dtypes(include='number').columns.to_list()
 
-x_col = st.selectbox('Choose the x axis',num_col)
-y_col = st.selectbox('Choose the y axis',num_col)
-color = st.selectbox('Choose the color',df.columns.to_list())
+###################################
+col1,col2,col3 = st.columns(3)
 
-fig1 = px.scatter(df,x=x_col,y=y_col,color=color)
+with col1:
+  x_col = st.selectbox('Choose the x axis',num_col)
+
+with col2:
+  y_col = st.selectbox('Choose the y axis',num_col)
+
+with col3:
+  color = st.selectbox('Choose the color',df.columns.to_list())
+
+fig1 = px.scatter(df,x=x_col,y=y_col,color='red')
 st.plotly_chart(fig1)
