@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import plotly.express as px
+
 st.header('File Upload')
 uploaded_file = st.file_uploader('Choose a file',type=['csv'])
 
@@ -14,5 +16,7 @@ if uploaded_file is not None:
   else:
     st.write(df[:n_rows])
 
+fig1 = px.scatter(df,x='population',y='households')
+st.plotly_chart(fig1)
 
 
