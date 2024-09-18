@@ -1,21 +1,20 @@
 
 import streamlit as st
-import pickle
+## example 1
+%%writefile app.py
+st.header('Calculate Area')
+choose = st.selectbox('Choose the shape',['Circle','Rectangle'])
 
-# load pkl file
-with open('modell.pkl', 'rb') as file:
-    model = pickle.load(file)
+area =None
 
-#title the page
-st.title("predict the CO2 EMISSIONS of car")
+if choose == 'Circle':
+  r = st.number_input('Enter the radius',min_value=1,max_value=50)
+  area = r*r*3.14
+elif choose == 'Rectangle':
+  l = st.number_input('Enter the length',min_value=1,max_value=50)
+  w = st.number_input('Enter the width',min_value=1,max_value=50)
+  area = l*w
 
-
-#inputs
-engine_size = st.number_input('Engine Size' , min_value=0.0 , max_value=10.0,value=1.0)
-cylinder = st.number_input('Cylinder' , min_value=0.0 , max_value=10.0,value=1.0)
-fuel_consumption =  st.number_input('Fuel Consumption' , min_value=0.0 , max_value=100.0,value=1.0)
-
-output = model.predict([[engine_size,cylinder,fuel_consumption]])
-
-#display the result
-st.write("the predict CO2 of car is : ",output[0])
+btn = st.button('Calculate')
+if btn:
+  st.write(f'The area is {area}')
