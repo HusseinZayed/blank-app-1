@@ -20,8 +20,10 @@ if names_column:
 else:
   st.write(df[:num_row])
 
-x_col = st.selectbox('choose x column',df.columns.to_list())
-y_col = st.selectbox('choose y column',df.columns.to_list())
+num_col = df.select_dtypes(include='number').columns.to_list()
+
+x_col = st.selectbox('choose x column',num_col)
+y_col = st.selectbox('choose y column',num_col)
 
 fig = px.scatter(df,x=x_col,y=y_col)
 st.plotly_chart(fig)
