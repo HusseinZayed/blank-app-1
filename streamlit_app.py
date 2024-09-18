@@ -1,13 +1,13 @@
 import streamlit as st
 st.header("Session state")
 
-fuirts = []
+st.session_state.fuirts = []
 
 item = st.text_input('add item')
 
 btn = st.button('add')
 
 if btn:
-  fuirts.append(item)
+  session_state.fuirts.append(item)
 
 st.write(fuirts)
