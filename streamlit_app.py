@@ -1,5 +1,5 @@
 ## example 1 with sidebar
-
+import streamlit as st
 
 st.sidebar.title('Sidebar')
 
