@@ -36,5 +36,5 @@ with tab1:
 
 with tab2:
 #x = st.selectbox('choose x column',num_col)
-  fig2 = px.histogram(df,x='population')
+  fig2 = px.histogram(df,x=num_col)
   st.plotly_chart(fig2)
