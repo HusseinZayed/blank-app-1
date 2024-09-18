@@ -1,5 +1,13 @@
 import streamlit as st
+st.header("Session state")
 
-st.set_page_config(page_title="abc")
-st.header('My first app')
-st.sidebar.success('select a page')
+fuirts = []
+
+item = st.text_input('add item')
+
+btn = st.button('add')
+
+if btn:
+  fuirts.append(item)
+
+st.write(fuirts)
