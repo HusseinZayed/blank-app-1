@@ -1,3 +1,4 @@
+import streamlit as st
 st.header('Calculate Area')
 choose = st.selectbox('Choose the shape',['Circle','Rectangle'])
 
