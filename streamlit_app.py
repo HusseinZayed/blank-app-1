@@ -1,7 +1,8 @@
 import streamlit as st
 st.header("Session state")
 
-st.session_state.fuirts = []
+if 'fuirts' not in st.session_state:
+ st.session_state.fuirts = []
 
 item = st.text_input('add item')
 
