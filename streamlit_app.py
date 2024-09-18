@@ -1,3 +1,4 @@
+import streamlit as st
 import pandas as pd
 st.header('File Upload')
 uploaded_file = st.file_uploader('Choose a file',type=['csv'])
