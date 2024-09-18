@@ -34,5 +34,5 @@ with col2:
 with col3:
   color = st.selectbox('Choose the color',df.columns.to_list())
 
-fig1 = px.scatter(df,x=x_col,y=y_col,color='red')
+fig1 = px.scatter(df,x=x_col,y=y_col,color=color)
 st.plotly_chart(fig1)
