@@ -1,7 +1,4 @@
-# app 2
 import streamlit as st
-
-# app 2
 import pandas as pd
 import plotly.express as px
 
@@ -22,22 +19,22 @@ else:
 
 num_col = df.select_dtypes(include='number').columns.to_list()
 
-col1,col2,col3 = st.columns(3)
-x_col=None
+tab1,tab2 = st.tabs(['scatter','histogram'])
 
-with col1:
- x_col = st.selectbox('choose x column',num_col)
-
-with col2:
-  y_col = st.selectbox('choose y column',num_col)
-
-with col3:
-  color = st.selectbox('choose color',df.columns.to_list())
-
-fig = px.scatter(df,x=x_col,y=y_col,color=color)
-st.plotly_chart(fig)
+with tab1:
+  col1,col2,col3 = st.columns(3)
+  with col1:
+  x_col = st.selectbox('choose x column',num_col)
+  with col2:
+    y_col = st.selectbox('choose y column',num_col)
+  with col3:
+    color = st.selectbox('choose color',df.columns.to_list())
 
 
+  fig = px.scatter(df,x=x_col,y=y_col,color=color)
+  st.plotly_chart(fig)
+
+with tab2:
 x = st.selectbox('choose x column',num_col)
 fig2 = px.histogram(df,x=x)
 st.plotly_chart(fig2)
