@@ -36,3 +36,7 @@ with col3:
 
 fig1 = px.scatter(df,x=x_col,y=y_col,color=color)
 st.plotly_chart(fig1)
+
+hist_x = st.selectbox('Choose the tab',num_col)
+fig2 = px.histogram(df,x=hist_x)
+st.plotly_chart(fig2)
