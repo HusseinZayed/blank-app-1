@@ -1,11 +1,12 @@
 import streamlit as st
+import time
 st.sidebar.title('Sidebar')
+area = None
+st.header("calculate Area")
 
 with st.sidebar:
   choose = st.selectbox('choose the shape',['circle','rectangle'])
 
-area = None
-st.header("calculate Area")
 
 if choose=='circle':
   r = st.number_input('enter the radius',min_value=1,max_value=100)
@@ -18,5 +19,6 @@ elif choose=='rectangle':
 btn = st.button('calculate')
 
 if btn:
+  with st.spinner('loading....'):
+    time.sleep(2)
   st.write(f'the area is {area}')
-
