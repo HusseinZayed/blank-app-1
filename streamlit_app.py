@@ -23,6 +23,7 @@ else:
 num_col = df.select_dtypes(include='number').columns.to_list()
 
 col1,col2,col3 = st.columns(3)
+x_col=None
 
 with col1:
  x_col = st.selectbox('choose x column',num_col)
@@ -37,6 +38,6 @@ fig = px.scatter(df,x=x_col,y=y_col,color=color)
 st.plotly_chart(fig)
 
 
-x = st.selectbox('choose x column',num_col.to_list())
+x = st.selectbox('choose x column',x_col)
 fig2 = px.histogram(df,x=x)
 st.plotly_chart(fig2)
