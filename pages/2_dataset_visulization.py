@@ -1,7 +1,7 @@
 # app 2
 import pandas as pd
 import plotly.express as px
-
+import streamlit as st
 st.header('file upload app 2')
 file = st.file_uploader('upload dataset',type=['csv'])
 if file is not None:
