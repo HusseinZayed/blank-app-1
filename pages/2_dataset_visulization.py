@@ -35,5 +35,5 @@ with tab1:
   st.plotly_chart(fig)
 
 with tab2:
-  fig2 = px.histogram(df,x='population')
+  fig2 = px.histogram(df,x=num_col)
   st.plotly_chart(fig2)
