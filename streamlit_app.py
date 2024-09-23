@@ -14,7 +14,7 @@ data = df.copy()
 st.set_page_config(page_title="Aviation flights fare", page_icon="✈️", layout='wide')
 
 
-model = joblib.load('aviation_flight_fare_prediction_model.p')    
+model = joblib.load('aviation_model.p')    
 sc = StandardScaler()
 
     # Inputs 
