@@ -1,15 +1,15 @@
-import streamlit as st
-import pandas as pd
-import numpy as np
-from sklearn.preprocessing import StandardScaler
-import joblib
-from datetime import datetime, date
-import plotly.express as px
+    import streamlit as st
+    import pandas as pd
+    import numpy as np
+    from sklearn.preprocessing import StandardScaler
+    import joblib
+    from datetime import datetime, date
+    import plotly.express as px
 
 
 
 # Setting page configuration
-st.set_page_config(page_title="Aviation flights fare", page_icon="✈️", layout='wide')
+    st.set_page_config(page_title="Aviation flights fare", page_icon="✈️", layout='wide')
 
 
     model = joblib.load('aviation_flight_fare_prediction_model.p')    
