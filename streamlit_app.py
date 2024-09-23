@@ -1,23 +1,23 @@
-    import streamlit as st
-    import pandas as pd
-    import numpy as np
-    from sklearn.preprocessing import StandardScaler
-    import joblib
-    from datetime import datetime, date
-    import plotly.express as px
-
+import streamlit as st
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import StandardScaler
+import joblib
+from datetime import datetime, date
+import plotly.express as px
+    
 
 
 # Setting page configuration
-    st.set_page_config(page_title="Aviation flights fare", page_icon="✈️", layout='wide')
+st.set_page_config(page_title="Aviation flights fare", page_icon="✈️", layout='wide')
 
 
-    model = joblib.load('aviation_flight_fare_prediction_model.p')    
-    sc = StandardScaler()
+model = joblib.load('aviation_flight_fare_prediction_model.p')    
+sc = StandardScaler()
 
     # Inputs 
-    col1, col2 = st.columns((5,5))
-    with col1:
+col1, col2 = st.columns((5,5))
+with col1:
         airline_pred = st.selectbox("Airline Carrier", list(df['Airline'].unique()))
         airline_pred = {'IndiGo':3, 'Air India':1, 'Jet Airways':4, 'SpiceJet':8,
                 'Multiple carriers':6, 'GoAir':2, 'Vistara':10, 'Air Asia':0,
@@ -38,7 +38,7 @@
     
         
     
-    with col2:
+with col2:
                 
         add_info_pred= st.selectbox("Additional Services", list(df['Additional_Info'].unique()))
         add_info_pred = {'No info':7, 'In-flight meal not included':5, 'No check-in baggage included':6,
@@ -61,8 +61,8 @@
         dep_hour_pred_scaled = sc.fit_transform([[int(st.number_input("Departure Hour (24 format)",
                                                                     min_value=0))]])
 
-    # Submit Button
-    if st.button("Submit 👇"):
+# Submit Button
+if st.button("Submit 👇"):
         input_data = np.array([[duration_pred_scaled[0][0], stops_pred, selected_date.day, selected_date.month, 
                                 dep_hour_pred_scaled[0][0], airline_pred, source_pred,
                                   destination_pred, add_info_pred]])
