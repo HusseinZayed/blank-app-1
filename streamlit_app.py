@@ -7,6 +7,8 @@ from datetime import datetime, date
 import plotly.express as px
     
 
+df = pd.read_csv('cleaned_df.csv')
+data = df.copy()
 
 # Setting page configuration
 st.set_page_config(page_title="Aviation flights fare", page_icon="✈️", layout='wide')
