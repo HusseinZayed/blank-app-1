@@ -1,60 +1,36 @@
 import streamlit as st
 import pandas as pd
-
-# اقرأ الداتا
-df = pd.read_csv("cleaned_df.csv")
+from pandasai import SmartDataframe
+from pandasai.llm.openai import OpenAI
+import os
 
 # واجهة المستخدم
-st.title("📊 ChatBot بسيط لتحليل البيانات")
-st.write("اسأل عن بياناتك بصيغة بسيطة، مثل:")
-st.markdown("""
-- عدد الصفوف
-- ما هي الأعمدة؟
-- ما هو متوسط عمود معين؟
-- ما هي القيم الفريدة في عمود معين؟
-""")
+st.title("🤖 Chatbot ذكي لفهم بياناتك باستخدام PandasAI")
+st.write("اسأل أي سؤال عن البيانات بلغة طبيعية!")
 
-# مدخل المستخدم
-user_input = st.text_input("✍️ اكتب سؤالك هنا")
+# رفع الملف
+uploaded_file = st.file_uploader("📁 حمّل ملف CSV", type="csv")
 
-# تحليل السؤال والرد
-if user_input:
-    user_input_lower = user_input.lower()
+# إدخال الـ API Key
+api_key = st.text_input("🔐 أدخل OpenAI API Key", type="password")
 
-    if "عدد الصفوف" in user_input_lower:
-        st.write(f"🔢 عدد الصفوف هو: {df.shape[0]}")
+# استكمال الكود عند توفر الملف والمفتاح
+if uploaded_file and api_key:
+    df = pd.read_csv(uploaded_file)
+    st.write("✅ بياناتك:")
+    st.dataframe(df.head())
 
-    elif "عدد الأعمدة" in user_input_lower:
-        st.write(f"🔢 عدد الأعمدة هو: {df.shape[1]}")
+    # نموذج PandasAI
+    llm = OpenAI(api_token=api_key)
+    sdf = SmartDataframe(df, config={"llm": llm})
 
-    elif "الأعمدة" in user_input_lower:
-        st.write("🧾 الأعمدة هي:")
-        st.write(df.columns.tolist())
+    # سؤال المستخدم
+    user_question = st.text_input("❓ اسأل عن البيانات")
 
-    elif "متوسط" in user_input_lower:
-        for col in df.select_dtypes(include='number').columns:
-            if col.lower() in user_input_lower:
-                st.write(f"📉 متوسط العمود '{col}' هو: {df[col].mean():.2f}")
-                break
-        else:
-            st.warning("❗ لم يتم التعرف على العمود. حاول كتابة اسمه كما هو بالضبط.")
-
-    elif "أقصى" in user_input_lower or "أعلى" in user_input_lower:
-        for col in df.select_dtypes(include='number').columns:
-            if col.lower() in user_input_lower:
-                st.write(f"📈 أعلى قيمة في العمود '{col}' هي: {df[col].max()}")
-                break
-        else:
-            st.warning("❗ لم يتم التعرف على العمود.")
-
-    elif "فريدة" in user_input_lower or "فريد" in user_input_lower:
-        for col in df.columns:
-            if col.lower() in user_input_lower:
-                st.write(f"🧬 القيم الفريدة في العمود '{col}':")
-                st.write(df[col].unique())
-                break
-        else:
-            st.warning("❗ لم يتم التعرف على العمود.")
-
-    else:
-        st.warning("🤔 لم أفهم سؤالك. حاول استخدام نمط بسيط من الأسئلة.")
+    if user_question:
+        try:
+            answer = sdf.chat(user_question)
+            st.success("📌 الإجابة:")
+            st.write(answer)
+        except Exception as e:
+            st.error(f"❗ حدث خطأ أثناء المعالجة: {e}")
