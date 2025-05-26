@@ -1,5 +1,5 @@
 streamlit
 pandas
-pandasai>=1.5.0
-huggingface_hub
 pyyaml
+huggingface_hub
+git+https://github.com/gventuri/pandas-ai.git
