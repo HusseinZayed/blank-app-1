@@ -3,3 +3,4 @@ pandas
 pyyaml
 huggingface_hub
 git+https://github.com/gventuri/pandas-ai.git
+transformers
