@@ -1,7 +1,5 @@
-numpy
-pandas
-scikit-learn
 streamlit
-pandasai
+pandas
+pandasai>=1.5.0
 huggingface_hub
 pyyaml
